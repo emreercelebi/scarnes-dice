@@ -28,10 +28,21 @@ class App extends Component {
       await sleep(75);
     }
 
+    const roll = Math.floor(Math.random() * 6) + 1;
     this.setState({
-      roll: Math.floor(Math.random() * 6) + 1
+      roll: roll
     });
 
+    if (roll === 1) {
+      this.setState( prevState => ({
+        turnTotal: 0,
+        isPlayersTurn: !prevState.isPlayersTurn
+      }));
+    } else {
+      this.setState( prevState => ({
+        turnTotal: prevState.turnTotal + roll,
+      }));
+    }
   }
 
   render() {
@@ -39,6 +50,9 @@ class App extends Component {
       <div className="App">
         <Scores playerScore={this.state.playerScore} computerScore={this.state.computerScore} />
         <Dice roll={this.state.roll}/>
+        <div className="App-currentTotal">
+          Current Total: {this.state.turnTotal}
+        </div>
         <ButtonRow 
           onRoll={this.rollDice}
         />
