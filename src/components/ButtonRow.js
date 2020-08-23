@@ -5,7 +5,7 @@ export const ButtonRow = (props) => {
   return (
     <div className="ButtonRow">
       <div className="ButtonRow-buttons">
-        <Button>
+        <Button onClick={props.onRoll}>
           Roll
         </Button>
         <Button>
