@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   async rollDice() {
+    this.disableButtons();
     for (let i = 0; i < 12; i++) {
       await this.setState( prevState => ({
         roll: (prevState.roll % 6) + 1
@@ -46,6 +47,7 @@ class App extends Component {
         turnTotal: prevState.turnTotal + roll,
       }));
     }
+    this.enableButtons();
   }
 
   holdValue() {
@@ -56,7 +58,7 @@ class App extends Component {
         playerScore: prevState.playerScore + turnTotal,
         turnTotal: 0,
         isPlayersTurn: !prevState.isPlayersTurn
-      }));
+      }), this.computerTurn);
     } else {
       this.setState( prevState => ({
         computerScore: prevState.computerScore + turnTotal,
@@ -72,6 +74,29 @@ class App extends Component {
       playerScore: 0,
       computerScore: 0,
       turnTotal: 0
+    })
+  }
+
+  async computerTurn() {
+    this.disableButtons();
+    while (!this.state.isPlayersTurn) {
+      await this.rollDice();
+      if (!this.state.isPlayersTurn && this.state.turnTotal > 10) {
+        this.holdValue();
+      }
+    }
+    this.enableButtons();
+  }
+
+  disableButtons() {
+    this.setState({
+      disableButtons: true
+    });
+  }
+
+  enableButtons() {
+    this.setState({
+      disableButtons: false
     })
   }
 
