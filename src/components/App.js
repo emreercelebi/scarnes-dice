@@ -20,6 +20,7 @@ class App extends Component {
 
     this.rollDice = this.rollDice.bind(this);
     this.holdValue = this.holdValue.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   async rollDice() {
@@ -65,6 +66,15 @@ class App extends Component {
     }
   }
 
+  reset() {
+    this.setState({
+      isPlayersTurn: true,
+      playerScore: 0,
+      computerScore: 0,
+      turnTotal: 0
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -77,6 +87,7 @@ class App extends Component {
           disableButtons={this.state.disableButtons}
           onRoll={this.rollDice}
           onHold={this.holdValue}
+          onReset={this.reset}
         />
       </div>
     );
