@@ -21,6 +21,9 @@ class App extends Component {
     this.rollDice = this.rollDice.bind(this);
     this.holdValue = this.holdValue.bind(this);
     this.reset = this.reset.bind(this);
+    this.computerTurn = this.computerTurn.bind(this);
+    this.disableButtons = this.disableButtons.bind(this);
+    this.enableButtons = this.enableButtons.bind(this);
   }
 
   async rollDice() {
@@ -58,7 +61,7 @@ class App extends Component {
         playerScore: prevState.playerScore + turnTotal,
         turnTotal: 0,
         isPlayersTurn: !prevState.isPlayersTurn
-      }), this.computerTurn);
+      }), () => setTimeout(this.computerTurn, 3000));
     } else {
       this.setState( prevState => ({
         computerScore: prevState.computerScore + turnTotal,
@@ -103,7 +106,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Scores playerScore={this.state.playerScore} computerScore={this.state.computerScore} />
+        <Scores 
+          playerScore={this.state.playerScore} 
+          computerScore={this.state.computerScore} 
+          isPlayersTurn={this.state.isPlayersTurn}
+        />
         <Dice roll={this.state.roll}/>
         <div className="App-currentTotal">
           Current Total: {this.state.turnTotal}

@@ -6,15 +6,18 @@ export const ButtonRow = (props) => {
   const buttonData = [
     {
       handler: props.onRoll,
-      text: 'Roll'
+      text: 'Roll',
+      color: 'blue'
     },
     {
       handler: props.onHold,
-      text: 'Hold'
+      text: 'Hold',
+      color: 'green'
     },
     {
       handler: props.onReset,
-      text: 'Reset'
+      text: 'Reset',
+      color: 'red'
     }
   ];
 
@@ -22,7 +25,7 @@ export const ButtonRow = (props) => {
     <div className="ButtonRow">
       <div className="ButtonRow-buttons">
         {buttonData.map( entry => (
-          <Button onClick={entry.handler} disabled={props.disableButtons}>
+          <Button onClick={entry.handler} disabled={props.disableButtons} color={entry.color}>
             {entry.text}
           </Button>
         ))}
