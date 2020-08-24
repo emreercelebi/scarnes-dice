@@ -1,0 +1,14 @@
+.Scores
+{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  &-playerScore,
+  &-computerScore
+  {
+    font-family: $font-family-main;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}

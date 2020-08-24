@@ -24,8 +24,13 @@ export const ButtonRow = (props) => {
   return (
     <div className="ButtonRow">
       <div className="ButtonRow-buttons">
-        {buttonData.map( entry => (
-          <Button onClick={entry.handler} disabled={props.disableButtons} color={entry.color}>
+        {buttonData.map( (entry, index) => (
+          <Button 
+            className="ButtonRow-button"
+            key={index}
+            onClick={entry.handler} 
+            disabled={props.disableButtons} 
+            color={entry.color}>
             {entry.text}
           </Button>
         ))}

@@ -106,21 +106,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Scores 
-          playerScore={this.state.playerScore} 
-          computerScore={this.state.computerScore} 
-          isPlayersTurn={this.state.isPlayersTurn}
-        />
-        <Dice roll={this.state.roll}/>
-        <div className="App-currentTotal">
-          Current Total: {this.state.turnTotal}
+        <div className="App-container">
+          <Scores 
+            playerScore={this.state.playerScore} 
+            computerScore={this.state.computerScore} 
+            isPlayersTurn={this.state.isPlayersTurn}
+          />
+          <Dice roll={this.state.roll}/>
+          <div className="App-currentTotal">
+            Current Total: {this.state.turnTotal}
+          </div>
+          <ButtonRow 
+            disableButtons={this.state.disableButtons}
+            onRoll={this.rollDice}
+            onHold={this.holdValue}
+            onReset={this.reset}
+          />
         </div>
-        <ButtonRow 
-          disableButtons={this.state.disableButtons}
-          onRoll={this.rollDice}
-          onHold={this.holdValue}
-          onReset={this.reset}
-        />
       </div>
     );
   }  

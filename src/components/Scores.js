@@ -4,13 +4,17 @@ import { Icon } from 'semantic-ui-react';
 export const Scores = (props) => {
   return (
     <div className="Scores">
-      <div className="Scores-playerScore">
-        Player score: {props.playerScore}
+      <div className="Scores-player">
+        <span className="Scores-playerScore">
+          Player: {props.playerScore}
+        </span>
         {props.isPlayersTurn ? <Icon name='chevron left'/> : null}
       </div>
-      <div className="Scores-computerScore">
-        Computer Score: {props.computerScore}
-        {!props.isPlayersTurn ? <Icon name='chevron left'/> : null}
+      <div className="Scores-computer">
+        {!props.isPlayersTurn ? <Icon name='chevron right'/> : null}
+        <span className="Scores-computerScore">
+          Computer: {props.computerScore}
+        </span>
       </div>
     </div>
   );

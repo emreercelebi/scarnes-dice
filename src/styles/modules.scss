@@ -1,1 +1,5 @@
-@import 'App.scss';
+@import './variables';
+@import 'components/App';
+@import 'components/Scores';
+@import 'components/ButtonRow';
+@import 'components/Dice';

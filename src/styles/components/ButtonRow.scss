@@ -1,0 +1,16 @@
+.ButtonRow
+{
+  display: flex;
+
+  &-buttons
+  {
+    width: 100%;
+    text-align: center;
+  }
+
+  & &-buttons &-button
+  {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
