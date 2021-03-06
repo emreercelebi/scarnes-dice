@@ -15,7 +15,8 @@ class App extends Component {
       roll: 1,
       isPlayersTurn: true,
       turnTotal: 0,
-      disableButtons: false
+      disableButtons: false,
+      pausedForOne: false
     };
 
     this.rollDice = this.rollDice.bind(this);
@@ -41,10 +42,17 @@ class App extends Component {
     });
 
     if (roll === 1) {
-      this.setState( prevState => ({
+      this.setState({
         turnTotal: 0,
-        isPlayersTurn: !prevState.isPlayersTurn
-      }));
+        pausedForOne: true,
+        disableButtons: true
+      });
+      await sleep(2000);
+      this.setState({
+        pausedForOne: false,
+        disableButtons: false
+      });
+      this.holdValue();
     } else {
       this.setState( prevState => ({
         turnTotal: prevState.turnTotal + roll,
@@ -61,7 +69,7 @@ class App extends Component {
         playerScore: prevState.playerScore + turnTotal,
         turnTotal: 0,
         isPlayersTurn: !prevState.isPlayersTurn
-      }), () => setTimeout(this.computerTurn, 3000));
+      }), () => setTimeout(this.computerTurn, 2000));
     } else {
       this.setState( prevState => ({
         computerScore: prevState.computerScore + turnTotal,
@@ -87,6 +95,7 @@ class App extends Component {
       if (!this.state.isPlayersTurn && this.state.turnTotal > 10) {
         this.holdValue();
       }
+      await sleep(500);
     }
     this.enableButtons();
   }
@@ -122,6 +131,7 @@ class App extends Component {
             onHold={this.holdValue}
             onReset={this.reset}
           />
+          {/* <Message /> */}
         </div>
       </div>
     );
