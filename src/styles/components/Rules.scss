@@ -1,0 +1,28 @@
+.Rules
+{
+  width: 100%;
+  max-width: 700px;
+  padding: 16px;
+  margin-top: 24px;
+
+  &-title
+  {
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  &-descriptionLine
+  {
+    display: flex;
+
+    &:not(:last-child)
+    {
+      margin-bottom: 8px;
+    }
+  }
+
+  &-number
+  {
+    margin-right: 8px;
+  }
+}

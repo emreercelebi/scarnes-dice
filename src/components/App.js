@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { ButtonRow } from './ButtonRow';
 import { Scores } from './Scores';
 import { Dice } from './Dice';
+import { Rules } from './Rules';
+import { Message } from './Message';
 import { sleep } from '../helpers';
 
 class App extends Component {
@@ -131,7 +133,11 @@ class App extends Component {
             onHold={this.holdValue}
             onReset={this.reset}
           />
-          {/* <Message /> */}
+          <Message 
+            isPlayersTurn={this.state.isPlayersTurn}
+            pausedForOne={this.state.pausedForOne}
+          />
+          <Rules />
         </div>
       </div>
     );
