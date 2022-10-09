@@ -4,5 +4,6 @@
  **/
 
 import './styles/app.scss';
+import { ScarnesDice } from './ts/ScarnesDice';
 
-
+const scarnesDice =  new ScarnesDice();

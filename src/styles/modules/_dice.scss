@@ -7,11 +7,17 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    margin-bottom: 24px;
   }
 
   &-image
   {
     height: 112px;
     width: 112px;
+  }
+
+  &-currentTotal
+  {
+    text-align: center;
   }
 }

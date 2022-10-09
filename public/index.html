@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Web site created using create-snowpack-app" />
     <link rel="stylesheet" type="text/css" href="/index.css" />
+    <link rel="preload" as="image" href="assets/Dice2.png">
+    <link rel="preload" as="image" href="assets/Dice3.png">
+    <link rel="preload" as="image" href="assets/Dice4.png">
+    <link rel="preload" as="image" href="assets/Dice5.png">
+    <link rel="preload" as="image" href="assets/Dice6.png">
     <title>Snowpack App</title>
   </head>
   <body>
@@ -22,7 +27,7 @@
             <div class="Scores-name">
               You
             </div>
-            <div class="Scores-score js-player-score" data-value="0">
+            <div class="Scores-score js-player-score u-active">
               0
             </div>
           </div>
@@ -30,7 +35,7 @@
             <div class="Scores-name">
               Computer
             </div>
-            <div class="Scores-score js-computer-score" data-value="0">
+            <div class="Scores-score js-computer-score">
               0
             </div>
           </div>
@@ -38,13 +43,12 @@
       </div>
       <div class="Dice">
         <div class="Dice-row">
-          <img class="Dice-image js-dice" src="./assets/Dice1.png" alt="Dice with value of 1"/>
-          <img class="Dice-image js-dice u-hidden" src="./assets/Dice2.png" alt="Dice with value of 2"/>
-          <img class="Dice-image js-dice u-hidden" src="./assets/Dice3.png" alt="Dice with value of 3"/>
-          <img class="Dice-image js-dice u-hidden" src="./assets/Dice4.png" alt="Dice with value of 4"/>
-          <img class="Dice-image js-dice u-hidden" src="./assets/Dice5.png" alt="Dice with value of 5"/>
-          <img class="Dice-image js-dice u-hidden" src="./assets/Dice6.png" alt="Dice with value of 6"/>
+          <img class="Dice-image js-dice" src="assets/Dice1.png" alt="Dice face">
         </div>
+        <div class="Dice-currentTotal js-current-total">
+          0
+        </div>
+        <div class="Dice-message js-dice-message"></div>
       </div>
       <div class="Buttons">
         <div class="Buttons-row">
