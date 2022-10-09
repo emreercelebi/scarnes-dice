@@ -9,35 +9,52 @@
     <title>Snowpack App</title>
   </head>
   <body>
-    <img id="img" src="/logo.svg" />
-    <canvas id="canvas"></canvas>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div class="Title">
-      <h1 class="Title-text">
-        Scarne's Dice
-      </h1>
-    </div>
-    <div class="Scores">
-      Scores
-    </div>
-    <div class="Dice">
-      <div class="Dice-row">
-        <img class="Dice-image" src="./assets/Dice1.png" alt="Dice with value of 1"/>
-        <img class="Dice-image" src="./assets/Dice2.png" alt="Dice with value of 2"/>
-        <img class="Dice-image" src="./assets/Dice3.png" alt="Dice with value of 3"/>
-        <img class="Dice-image" src="./assets/Dice4.png" alt="Dice with value of 4"/>
-        <img class="Dice-image" src="./assets/Dice5.png" alt="Dice with value of 5"/>
-        <img class="Dice-image" src="./assets/Dice6.png" alt="Dice with value of 6"/>
+    <div class="App">
+      <div class="Title">
+        <h1 class="Title-text">
+          Scarne's Dice
+        </h1>
       </div>
-    </div>
-    <div class="Buttons">
-      <div class="Buttons-row">
-        <button class="Buttons-roll">
-          Roll
-        </button>
-        <button class="Buttons-keep">
-          Keep
-        </button>
+      <div class="Scores">
+        <div class="Scores-row">
+          <div class="Scores-box">
+            <div class="Scores-name">
+              You
+            </div>
+            <div class="Scores-score js-player-score" data-value="0">
+              0
+            </div>
+          </div>
+          <div class="Scores-box">
+            <div class="Scores-name">
+              Computer
+            </div>
+            <div class="Scores-score js-computer-score" data-value="0">
+              0
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Dice">
+        <div class="Dice-row">
+          <img class="Dice-image js-dice" src="./assets/Dice1.png" alt="Dice with value of 1"/>
+          <img class="Dice-image js-dice u-hidden" src="./assets/Dice2.png" alt="Dice with value of 2"/>
+          <img class="Dice-image js-dice u-hidden" src="./assets/Dice3.png" alt="Dice with value of 3"/>
+          <img class="Dice-image js-dice u-hidden" src="./assets/Dice4.png" alt="Dice with value of 4"/>
+          <img class="Dice-image js-dice u-hidden" src="./assets/Dice5.png" alt="Dice with value of 5"/>
+          <img class="Dice-image js-dice u-hidden" src="./assets/Dice6.png" alt="Dice with value of 6"/>
+        </div>
+      </div>
+      <div class="Buttons">
+        <div class="Buttons-row">
+          <button class="Buttons-roll js-btn-roll">
+            Roll
+          </button>
+          <button class="Buttons-keep js-btn-keep">
+            Keep
+          </button>
+        </div>
       </div>
     </div>
     <script type="module" src="/dist/index.js"></script>
