@@ -6,14 +6,14 @@ class Dice {
     const diceClass = 'js-dice';
     this.element = document.querySelector(`.${diceClass}`);
     this.value = 1;
-    
+
     if (!this.element) {
       console.error(`No dice element with class "${diceClass}"`);
     }
   }
 
-   async roll() : Promise<number> {
-    const finalValue : number = Math.ceil(Math.random() * 6);
+  async roll(): Promise<number> {
+    const finalValue: number = Math.ceil(Math.random() * 6);
     for (let i = 0; i < 15; i++) {
       this.updateValue(this.value % 6 + 1);
       await new Promise(r => setTimeout(r, 100));
@@ -22,7 +22,7 @@ class Dice {
     return finalValue;
   }
 
-  updateValue(newValue : number) : void {
+  updateValue(newValue: number): void {
     this.value = newValue;
     if (this.element) {
       this.element.src = `assets/Dice${newValue}.png`;

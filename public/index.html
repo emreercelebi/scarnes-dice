@@ -23,7 +23,7 @@
       </div>
       <div class="Scores">
         <div class="Scores-row">
-          <div class="Scores-box">
+          <div class="Scores-box Scores-box--active js-player-box">
             <div class="Scores-name">
               You
             </div>
@@ -31,7 +31,7 @@
               0
             </div>
           </div>
-          <div class="Scores-box">
+          <div class="Scores-box js-computer-box">
             <div class="Scores-name">
               Computer
             </div>
@@ -45,32 +45,24 @@
         <div class="Dice-row">
           <img class="Dice-image js-dice" src="assets/Dice1.png" alt="Dice face">
         </div>
-        <div class="Dice-currentTotal js-current-total">
-          0
+        <div class="Dice-currentTotalLine">
+          Current total: <span class="Dice-currentTotal js-current-total">0</span>
         </div>
-        <div class="Dice-message js-dice-message"></div>
+      </div>
+      <div class="Message js-game-message">
+        Click Roll to start playing!
       </div>
       <div class="Buttons">
         <div class="Buttons-row">
-          <button class="Buttons-roll js-btn-roll">
+          <button class="Buttons-button Buttons-roll js-btn-roll">
             Roll
           </button>
-          <button class="Buttons-keep js-btn-keep">
+          <button class="Buttons-button Buttons-keep js-btn-keep">
             Keep
           </button>
         </div>
       </div>
     </div>
     <script type="module" src="/dist/index.js"></script>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
