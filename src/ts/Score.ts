@@ -17,6 +17,10 @@ class Score {
     }
   }
 
+  getScore(): number {
+    return this.score;
+  }
+
   updateScore(delta: number): number {
     this.score += delta;
     if (this.scoreEl) {
@@ -27,6 +31,10 @@ class Score {
 
   toggleActive(): void {
     this.boxEl?.classList.toggle('Scores-box--active');
+  }
+
+  resetScore(): void {
+    this.updateScore(this.score * -1);
   }
 }
 

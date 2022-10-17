@@ -1,0 +1,19 @@
+@mixin button($bg-default, $bg-hover)
+{
+  font-size: 24px;
+  font-weight: bold;
+  color: $white;
+  appearance: none;
+  padding: 18px 40px;
+  border-radius: 12px;
+  border: 1px solid black;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: $bg-default;
+
+  &:hover
+  {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: $bg-hover;
+  }
+}

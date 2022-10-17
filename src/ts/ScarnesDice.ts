@@ -1,4 +1,5 @@
 import { GameController } from "./GameController"
+import { Modal } from "./Modal";
 
 const MESSAGES = {
   playerKeepingRoll: (value: number) => `Adding ${value} to your total`,
@@ -9,6 +10,11 @@ const MESSAGES = {
   computerTurn: 'Computer\'s turn',
 }
 
+const MODAL_MESSAGES = {
+  playerVictory: 'You win!',
+  computerVictory: 'You lose :(',
+}
+
 class ScarnesDice {
   controller: GameController;
   rollBtn: HTMLButtonElement | null;
@@ -17,6 +23,7 @@ class ScarnesDice {
   currentRollsTotal: number;
   currentRollsTotalEl: HTMLDivElement | null;
   messageEl: HTMLDivElement | null;
+  modal: Modal;
 
   constructor() {
     this.controller = new GameController;
@@ -26,39 +33,55 @@ class ScarnesDice {
     this.keepBtn = document.querySelector('.js-btn-keep');
     this.currentRollsTotalEl = document.querySelector('.js-current-total');
     this.messageEl = document.querySelector('.js-game-message');
+    this.modal = new Modal(this.resetGame.bind(this));
 
     this.initButtons();
   }
 
   initButtons(): void {
     if (this.rollBtn) {
-      this.rollBtn.addEventListener('click', async () => {
-        this.currentRoll = await this.controller.executeRoll();
-        if (this.currentRoll == 1) {
-          this.updateMessage(MESSAGES.playerRolledOne);
-          await new Promise(r => setTimeout(r, 2000));
-          this.updateMessage(MESSAGES.computerTurn);
-
-          this.resetCurrentRollsTotal();
-          this.controller.changeTurns();
-          this.computerTurn();
-        } else {
-          this.incrementCurrentRollsTotal(this.currentRoll);
-        }
+      this.rollBtn.addEventListener('click', () => {
+        this.playerRoll();
       });
     }
     if (this.keepBtn) {
-      this.keepBtn.addEventListener('click', async () => {
-        this.controller.keep(this.currentRollsTotal);
-
-        this.updateMessage(MESSAGES.playerKeepingRoll(this.currentRollsTotal));
-        await new Promise(r => setTimeout(r, 2000));
-        this.updateMessage(MESSAGES.computerTurn);
-
-        this.resetCurrentRollsTotal();
-        this.controller.changeTurns();
-        this.computerTurn();
+      this.keepBtn.addEventListener('click', () => {
+        this.playerKeep();
       });
+    }
+  }
+
+  async playerRoll(): Promise<void> {
+    this.currentRoll = await this.controller.executeRoll();
+    if (this.currentRoll == 1) {
+      this.updateMessage(MESSAGES.playerRolledOne);
+      await new Promise(r => setTimeout(r, 2000));
+      this.updateMessage(MESSAGES.computerTurn);
+
+      this.resetCurrentRollsTotal();
+      this.controller.changeTurns();
+      this.computerTurn();
+    } else {
+      this.incrementCurrentRollsTotal(this.currentRoll);
+      if (this.hasEnoughToWin()) {
+        this.playerKeep();
+        this.playerVictory();
+      }
+    }
+  }
+
+  async playerKeep(isFinalTurn=false): Promise<void> {
+    this.controller.keep(this.currentRollsTotal);
+
+    this.updateMessage(MESSAGES.playerKeepingRoll(this.currentRollsTotal));
+    await new Promise(r => setTimeout(r, 2000));
+    this.updateMessage(MESSAGES.computerTurn);
+
+    this.resetCurrentRollsTotal();
+    this.controller.changeTurns();
+
+    if (!isFinalTurn) {
+      this.computerTurn();
     }
   }
 
@@ -71,6 +94,11 @@ class ScarnesDice {
       } else {
         this.incrementCurrentRollsTotal(this.currentRoll);
         await new Promise(r => setTimeout(r, 1000));
+        if (this.hasEnoughToWin()) {
+          this.controller.keep(this.currentRollsTotal)
+          this.computerVictory();
+          return;
+        }
       }
     }
 
@@ -113,6 +141,25 @@ class ScarnesDice {
     if (this.messageEl) {
       this.messageEl.innerHTML = message;
     }
+  }
+
+  hasEnoughToWin(): boolean {
+    let score = this.controller.isPlayerTurn ? this.controller.playerScore.getScore() : this.controller.computerScore.getScore();
+    return score + this.currentRollsTotal >= 10;
+  }
+
+  playerVictory(): void {
+    this.modal.reveal(MODAL_MESSAGES.playerVictory);
+  }
+
+  computerVictory(): void {
+    this.modal.reveal(MODAL_MESSAGES.computerVictory);
+  }
+
+  resetGame(): void {
+    this.resetCurrentRollsTotal();
+    this.controller.computerScore.resetScore();
+    this.controller.playerScore.resetScore();
   }
 }
 
